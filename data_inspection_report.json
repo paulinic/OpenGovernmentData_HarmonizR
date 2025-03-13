@@ -1,0 +1,177 @@
+{
+  "files_analyzed": 9,
+  "file_summaries": {
+    "climate_data.csv": {
+      "filename": "climate_data.csv",
+      "sheet_name": {},
+      "row_count": 360,
+      "column_count": 1,
+      "columns": "<!DOCTYPE html>",
+      "column_details": {
+        "<!DOCTYPE html>": {
+          "column": "<!DOCTYPE html>",
+          "null_count": 0,
+          "null_percentage": 0,
+          "unique_values": 250,
+          "dtype": "character",
+          "inferred_type": "text",
+          "sample_values": ["<html lang=\"de\">  ", "  <head>", "    <meta charset=\"utf-8\" />", "    <meta name=\"generator\" content=\"ckan 2.8.10\" />", "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />"]
+        }
+      },
+      "duplicate_rows": 110
+    },
+    "covid_cases.csv": {
+      "filename": "covid_cases.csv",
+      "sheet_name": {},
+      "row_count": 360,
+      "column_count": 1,
+      "columns": "<!DOCTYPE html>",
+      "column_details": {
+        "<!DOCTYPE html>": {
+          "column": "<!DOCTYPE html>",
+          "null_count": 0,
+          "null_percentage": 0,
+          "unique_values": 250,
+          "dtype": "character",
+          "inferred_type": "text",
+          "sample_values": ["<html lang=\"de\">  ", "  <head>", "    <meta charset=\"utf-8\" />", "    <meta name=\"generator\" content=\"ckan 2.8.10\" />", "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />"]
+        }
+      },
+      "duplicate_rows": 110
+    },
+    "education_statistics.csv": {
+      "filename": "education_statistics.csv",
+      "sheet_name": {},
+      "row_count": 360,
+      "column_count": 1,
+      "columns": "<!DOCTYPE html>",
+      "column_details": {
+        "<!DOCTYPE html>": {
+          "column": "<!DOCTYPE html>",
+          "null_count": 0,
+          "null_percentage": 0,
+          "unique_values": 250,
+          "dtype": "character",
+          "inferred_type": "text",
+          "sample_values": ["<html lang=\"de\">  ", "  <head>", "    <meta charset=\"utf-8\" />", "    <meta name=\"generator\" content=\"ckan 2.8.10\" />", "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />"]
+        }
+      },
+      "duplicate_rows": 110
+    },
+    "energy_consumption.csv": {
+      "filename": "energy_consumption.csv",
+      "sheet_name": {},
+      "row_count": 360,
+      "column_count": 1,
+      "columns": "<!DOCTYPE html>",
+      "column_details": {
+        "<!DOCTYPE html>": {
+          "column": "<!DOCTYPE html>",
+          "null_count": 0,
+          "null_percentage": 0,
+          "unique_values": 250,
+          "dtype": "character",
+          "inferred_type": "text",
+          "sample_values": ["<html lang=\"de\">  ", "  <head>", "    <meta charset=\"utf-8\" />", "    <meta name=\"generator\" content=\"ckan 2.8.10\" />", "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />"]
+        }
+      },
+      "duplicate_rows": 110
+    },
+    "federal_buildings.csv": {
+      "filename": "federal_buildings.csv",
+      "sheet_name": {},
+      "row_count": 360,
+      "column_count": 1,
+      "columns": "<!DOCTYPE html>",
+      "column_details": {
+        "<!DOCTYPE html>": {
+          "column": "<!DOCTYPE html>",
+          "null_count": 0,
+          "null_percentage": 0,
+          "unique_values": 250,
+          "dtype": "character",
+          "inferred_type": "text",
+          "sample_values": ["<html lang=\"de\">  ", "  <head>", "    <meta charset=\"utf-8\" />", "    <meta name=\"generator\" content=\"ckan 2.8.10\" />", "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />"]
+        }
+      },
+      "duplicate_rows": 110
+    },
+    "measurement_stations.csv": {
+      "filename": "measurement_stations.csv",
+      "sheet_name": {},
+      "row_count": 360,
+      "column_count": 1,
+      "columns": "<!DOCTYPE html>",
+      "column_details": {
+        "<!DOCTYPE html>": {
+          "column": "<!DOCTYPE html>",
+          "null_count": 0,
+          "null_percentage": 0,
+          "unique_values": 250,
+          "dtype": "character",
+          "inferred_type": "text",
+          "sample_values": ["<html lang=\"de\">  ", "  <head>", "    <meta charset=\"utf-8\" />", "    <meta name=\"generator\" content=\"ckan 2.8.10\" />", "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />"]
+        }
+      },
+      "duplicate_rows": 110
+    },
+    "population_stats.csv": {
+      "filename": "population_stats.csv",
+      "sheet_name": {},
+      "row_count": 360,
+      "column_count": 1,
+      "columns": "<!DOCTYPE html>",
+      "column_details": {
+        "<!DOCTYPE html>": {
+          "column": "<!DOCTYPE html>",
+          "null_count": 0,
+          "null_percentage": 0,
+          "unique_values": 250,
+          "dtype": "character",
+          "inferred_type": "text",
+          "sample_values": ["<html lang=\"de\">  ", "  <head>", "    <meta charset=\"utf-8\" />", "    <meta name=\"generator\" content=\"ckan 2.8.10\" />", "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />"]
+        }
+      },
+      "duplicate_rows": 110
+    },
+    "swiss_boundaries.json": {
+      "error": "Failed to parse JSON: lexical error: invalid char in json text.\n                                       <!DOCTYPE html> <html lang=\"de\"\n                     (right here) ------^\n",
+      "filename": "swiss_boundaries.json"
+    },
+    "swiss_communes.csv": {
+      "filename": "swiss_communes.csv",
+      "sheet_name": {},
+      "row_count": 360,
+      "column_count": 1,
+      "columns": "<!DOCTYPE html>",
+      "column_details": {
+        "<!DOCTYPE html>": {
+          "column": "<!DOCTYPE html>",
+          "null_count": 0,
+          "null_percentage": 0,
+          "unique_values": 250,
+          "dtype": "character",
+          "inferred_type": "text",
+          "sample_values": ["<html lang=\"de\">  ", "  <head>", "    <meta charset=\"utf-8\" />", "    <meta name=\"generator\" content=\"ckan 2.8.10\" />", "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />"]
+        }
+      },
+      "duplicate_rows": 110
+    }
+  },
+  "common_fields": {
+    "all_fields": {
+      "<!DOCTYPE html>": ["climate_data.csv", "covid_cases.csv", "education_statistics.csv", "energy_consumption.csv", "federal_buildings.csv", "measurement_stations.csv", "population_stats.csv", "swiss_communes.csv"]
+    },
+    "common_fields": {
+      "<!DOCTYPE html>": ["climate_data.csv", "covid_cases.csv", "education_statistics.csv", "energy_consumption.csv", "federal_buildings.csv", "measurement_stations.csv", "population_stats.csv", "swiss_communes.csv"]
+    },
+    "common_field_count": 1
+  },
+  "inconsistencies": {
+    "inconsistencies": [],
+    "inconsistency_count": 0
+  },
+  "harmonization_candidates": {
+    "<!DOCTYPE html>": ["climate_data.csv", "covid_cases.csv", "education_statistics.csv", "energy_consumption.csv", "federal_buildings.csv", "measurement_stations.csv", "population_stats.csv", "swiss_communes.csv"]
+  }
+}

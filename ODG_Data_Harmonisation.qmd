@@ -24,7 +24,7 @@ Data with similar structure is being collected from different points
 
 *Platform Traps Swiss OGD providers face several “platform traps” that impede progress: 1. Chicken-or-egg problem: Attracting both data providers and users simultaneously to create a thriving ecosystem. 2. Penguin problem: Hesitation among data providers to be the first to share their data. 3. Emergence concept: Difficulty in fostering self-organizing growth and evolution of the platform.*
 
-## Lack of Data Governance 
+## Data Governance / legal framework for open data
 
 *There is a lack of robust data governance practices in Swiss public organizations, which hinders the effective management and sharing of data. This gap in governance may prevent OGD providers from adequately addressing platform challenges and fully realizing the potential of open data.*
 
@@ -32,14 +32,9 @@ Data with similar structure is being collected from different points
 
 **Aim of the application**
 
--   Support government workers in harmonizing their data sets according to the standards of opendata.swiss
+-   support academics, government workers and everyone else in using and linking open government data
 
-    -   Data harmonization algorithms can aid in: \
-         1. Cleansing and deduplicating data
-
-    -   2\. Validating information
-
-    -   3\. Ensuring high-quality, reliable data
+-   
 
 ## Procedure 
 
@@ -75,4 +70,4 @@ Data with similar structure is being collected from different points
 
 3.  Include validation checks that prevent the specific issues you found in the real data
 
-4.  Demonstrate how clean the data would be if your tool had been used
+4.  Demonstrate how clean the data would be if the tool had been used
