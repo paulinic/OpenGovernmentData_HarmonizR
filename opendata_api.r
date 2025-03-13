@@ -2,7 +2,7 @@
 # ------------------------------------------------------
 
 # 1. Load required libraries (installing if needed)
-required_packages <- c("httr", "jsonlite", "dplyr", "tidyr")
+required_packages <- c("httr", "jsonlite", "dplyr", "tidyr", "purrr")
 
 # Install missing packages
 for(package in required_packages) {
