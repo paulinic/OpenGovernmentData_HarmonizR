@@ -1,17 +1,27 @@
-# Data Inspector for opendata.swiss Files
-# This script helps identify and inspect data files, detect inconsistencies, and prepare them for harmonization
+# The package would have the following structure:
+# R/
+#  - scan_files.R
+#  - analyze_files.R
+#  - detect_issues.R
+#  - reporting.R
+#  - utils.R
 
-# Load required libraries
-library(readr)      # For reading CSV files
-library(readxl)     # For reading Excel files
-library(jsonlite)   # For reading JSON files
-library(dplyr)      # For data manipulation
-library(purrr)      # For functional programming
-library(stringr)    # For string manipulation
-library(lubridate)  # For date handling
+#----------------------------------------------
+# scan_files.R
+#----------------------------------------------
 
-# Function to scan a directory for supported data files
-scan_directory <- function(directory_path = "~/Documents/LUMACSS/FS25/Data Mining in R/sandbox/Data Mining Capstone Project/swiss_opendata_samples/raw") {
+#' Scan a directory for supported data files
+#'
+#' This function scans a directory and identifies supported data files for analysis
+#'
+#' @param directory_path Path to the directory containing data files
+#' @return A data frame with information about the discovered files
+#' @export
+#' @examples
+#' \dontrun{
+#' file_info <- scan_directory("path/to/data")
+#' }
+scan_directory <- function(directory_path) {
   # List all files in the directory
   files <- list.files(directory_path, full.names = TRUE)
   
@@ -31,7 +41,17 @@ scan_directory <- function(directory_path = "~/Documents/LUMACSS/FS25/Data Minin
   return(file_info)
 }
 
-# Function to detect CSV delimiter
+#----------------------------------------------
+# utils.R
+#----------------------------------------------
+
+#' Detect CSV delimiter
+#'
+#' This function tries to detect the delimiter used in a CSV file
+#'
+#' @param file_path Path to the CSV file
+#' @return Character representing the most likely delimiter
+#' @keywords internal
 detect_delimiter <- function(file_path) {
   # Read first few lines
   conn <- file(file_path, "r")
@@ -48,7 +68,13 @@ detect_delimiter <- function(file_path) {
   return(delimiters[which.max(counts)])
 }
 
-# Function to determine if a column might contain dates
+#' Check if a column might contain dates
+#'
+#' This function samples values from a column and checks if they appear to be dates
+#'
+#' @param values Vector of values to check
+#' @return Logical indicating if the column might contain dates
+#' @keywords internal
 might_be_date <- function(values) {
   # Sample some non-NA values
   sample_values <- na.omit(values)[1:min(10, length(na.omit(values)))]
@@ -88,7 +114,19 @@ might_be_date <- function(values) {
   return(mean(success) > 0.7)
 }
 
-# Function to analyze a data frame's structure
+#----------------------------------------------
+# analyze_files.R
+#----------------------------------------------
+
+#' Analyze a data frame's structure
+#'
+#' This function examines a data frame and provides detailed analysis of its structure
+#'
+#' @param df Data frame to analyze
+#' @param file_info File information
+#' @param sheet_name Optional sheet name for Excel files
+#' @return A list with analysis results
+#' @keywords internal
 analyze_dataframe <- function(df, file_info, sheet_name = NULL) {
   # Get column information
   column_info <- lapply(names(df), function(col) {
@@ -137,16 +175,23 @@ analyze_dataframe <- function(df, file_info, sheet_name = NULL) {
   return(result)
 }
 
-# Function to analyze a CSV file
+#' Analyze a CSV file
+#'
+#' This function analyzes the structure and content of a CSV file
+#'
+#' @param file_info File information from scan_directory
+#' @return A list with analysis results
+#' @importFrom readr read_delim cols col_character locale
+#' @export
 analyze_csv <- function(file_info) {
   tryCatch({
     # Detect delimiter
     delimiter <- detect_delimiter(file_info$path)
     
     # Read the CSV
-    df <- read_delim(file_info$path, delimiter, 
-                     col_types = cols(.default = col_character()),
-                     locale = locale(encoding = "UTF-8"))
+    df <- readr::read_delim(file_info$path, delimiter, 
+                     col_types = readr::cols(.default = readr::col_character()),
+                     locale = readr::locale(encoding = "UTF-8"))
     
     return(analyze_dataframe(df, file_info))
     
@@ -159,15 +204,22 @@ analyze_csv <- function(file_info) {
   })
 }
 
-# Function to analyze an Excel file
+#' Analyze an Excel file
+#'
+#' This function analyzes the structure and content of an Excel file
+#'
+#' @param file_info File information from scan_directory
+#' @return A list with analysis results
+#' @importFrom readxl excel_sheets read_excel
+#' @export
 analyze_excel <- function(file_info) {
   tryCatch({
     # Get sheet names
-    sheets <- excel_sheets(file_info$path)
+    sheets <- readxl::excel_sheets(file_info$path)
     
     # Analyze each sheet
     sheets_data <- lapply(sheets, function(sheet) {
-      df <- read_excel(file_info$path, sheet = sheet)
+      df <- readxl::read_excel(file_info$path, sheet = sheet)
       return(analyze_dataframe(df, file_info, sheet_name = sheet))
     })
     
@@ -189,11 +241,18 @@ analyze_excel <- function(file_info) {
   })
 }
 
-# Function to analyze a JSON file
+#' Analyze a JSON file
+#'
+#' This function analyzes the structure and content of a JSON file
+#'
+#' @param file_info File information from scan_directory
+#' @return A list with analysis results
+#' @importFrom jsonlite read_json
+#' @export
 analyze_json <- function(file_info) {
   tryCatch({
     # Read the JSON
-    json_data <- read_json(file_info$path)
+    json_data <- jsonlite::read_json(file_info$path)
     
     # Check if it's a list of objects (can be converted to data frame)
     if (is.data.frame(json_data) || (is.list(json_data) && all(sapply(json_data, is.list)))) {
@@ -218,7 +277,13 @@ analyze_json <- function(file_info) {
   })
 }
 
-# Function to analyze all files
+#' Analyze all files
+#'
+#' This function analyzes all files in the provided file information
+#'
+#' @param file_info File information from scan_directory
+#' @return A list with analysis results for all files
+#' @export
 analyze_all_files <- function(file_info) {
   summaries <- list()
   
@@ -244,7 +309,17 @@ analyze_all_files <- function(file_info) {
   return(summaries)
 }
 
-# Function to find common fields across files
+#----------------------------------------------
+# detect_issues.R
+#----------------------------------------------
+
+#' Find common fields across files
+#'
+#' This function identifies fields that appear in multiple files
+#'
+#' @param file_summaries Analysis results from analyze_all_files
+#' @return A list with common field information
+#' @export
 find_common_fields <- function(file_summaries) {
   all_fields <- list()
   
@@ -291,7 +366,13 @@ find_common_fields <- function(file_summaries) {
   ))
 }
 
-# Function to detect inconsistencies across files
+#' Detect inconsistencies across files
+#'
+#' This function identifies inconsistencies in field types across files
+#'
+#' @param file_summaries Analysis results from analyze_all_files
+#' @return A list with inconsistency information
+#' @export
 detect_inconsistencies <- function(file_summaries) {
   field_types <- list()
   
@@ -368,7 +449,18 @@ detect_inconsistencies <- function(file_summaries) {
   ))
 }
 
-# Function to generate a comprehensive report
+#----------------------------------------------
+# reporting.R
+#----------------------------------------------
+
+#' Generate a comprehensive report
+#'
+#' This function generates a comprehensive report of the data analysis
+#'
+#' @param file_info File information from scan_directory
+#' @param file_summaries Analysis results from analyze_all_files
+#' @return A list with the comprehensive report
+#' @export
 generate_report <- function(file_info, file_summaries) {
   common_fields <- find_common_fields(file_summaries)
   inconsistencies <- detect_inconsistencies(file_summaries)
@@ -382,33 +474,92 @@ generate_report <- function(file_info, file_summaries) {
   ))
 }
 
-# Main function to run the data inspector
-inspect_data <- function(directory_path) {
-  cat("Scanning directory for data files...\n")
+#' Save report to JSON file
+#'
+#' This function saves the analysis report to a JSON file
+#'
+#' @param report Report from generate_report
+#' @param file_path Path where to save the JSON file
+#' @return Invisibly returns the path to the saved file
+#' @importFrom jsonlite toJSON write_json
+#' @export
+save_report <- function(report, file_path = "data_inspection_report.json") {
+  jsonlite::write_json(report, file_path, auto_unbox = TRUE, pretty = TRUE)
+  message(paste("Report saved to", file_path))
+  return(invisible(file_path))
+}
+
+#----------------------------------------------
+# Main function - inspector.R
+#----------------------------------------------
+
+#' Inspect data in a directory
+#'
+#' This function runs a complete data inspection workflow on files in a directory
+#'
+#' @param directory_path Path to the directory containing data files
+#' @param save_to_file Whether to save the report to a JSON file
+#' @param output_file Path where to save the JSON file if save_to_file is TRUE
+#' @return A list with the comprehensive inspection report
+#' @export
+#' @examples
+#' \dontrun{
+#' report <- inspect_data("path/to/data")
+#' }
+inspect_data <- function(directory_path, save_to_file = TRUE, 
+                         output_file = "data_inspection_report.json") {
+  message("Scanning directory for data files...")
   file_info <- scan_directory(directory_path)
-  cat(paste("Found", nrow(file_info), "files to analyze\n"))
+  message(paste("Found", nrow(file_info), "files to analyze"))
   
-  cat("Analyzing files...\n")
+  message("Analyzing files...")
   file_summaries <- analyze_all_files(file_info)
   
-  cat("Generating report...\n")
+  message("Generating report...")
   report <- generate_report(file_info, file_summaries)
   
-  cat(paste("Analysis complete. Found", report$inconsistencies$inconsistency_count, 
-            "potential inconsistencies\n"))
-  cat(paste("Found", report$common_fields$common_field_count, 
-            "fields that appear in multiple files\n"))
+  message(paste("Analysis complete. Found", report$inconsistencies$inconsistency_count, 
+          "potential inconsistencies"))
+  message(paste("Found", report$common_fields$common_field_count, 
+          "fields that appear in multiple files"))
   
-  # Save the report
-  report_json <- jsonlite::toJSON(report, auto_unbox = TRUE, pretty = TRUE)
-  write(report_json, "data_inspection_report.json")
-  cat("Report saved to data_inspection_report.json\n")
+  # Save the report if requested
+  if (save_to_file) {
+    save_report(report, output_file)
+  }
   
   return(report)
 }
 
-# Set the path to your directory containing the files
-data_dir <- "~/Documents/LUMACSS/FS25/Data Mining in R/sandbox/Data Mining Capstone Project/swiss_opendata_samples/raw"  # Change this to your actual directory path
+#----------------------------------------------
+# DESCRIPTION file
+#----------------------------------------------
+# Package: openswissdata
+# Title: Data Inspector and Harmonizer for OpenData.Swiss
+# Version: 0.1.0
+# Authors@R: 
+#     person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
+#            comment = c(ORCID = "YOUR-ORCID-ID"))
+# Description: Tools for inspecting, analyzing, and harmonizing data files from the OpenData.Swiss platform.
+#    The package helps identify and inspect data files, detect inconsistencies, and prepare them for harmonization.
+# License: MIT + file LICENSE
+# Encoding: UTF-8
+# Roxygen: list(markdown = TRUE)
+# RoxygenNote: 7.2.3
+# Imports: 
+#     readr,
+#     readxl,
+#     jsonlite,
+#     dplyr,
+#     purrr,
+#     stringr,
+#     lubridate
+# Suggests:
+#     testthat (>= 3.0.0),
+#     knitr,
+#     rmarkdown
+# Config/testthat/edition: 3
 
-# Run the inspection
-report <- inspect_data(data_dir)
+#----------------------------------------------
+# NAMESPACE file will be generated by roxygen2
+#----------------------------------------------
