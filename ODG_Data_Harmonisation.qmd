@@ -7,7 +7,7 @@ editor: visual
 
 ## Introduction
 
-Open Government Data (explanation about the OGD environment in Switzerland) \
+Open Government Data (explanation about the OGD environment in Switzerland)\
 Legislation "open by default" / EMBAG and its consequences for government workers / data scientists
 
 ## Challenges of Open Government Data
@@ -20,7 +20,7 @@ Data with similar structure is being collected from different points
 
 *Te Swiss OGD strategy emphasizes the need for published data to meet defined quality standards and use standardized metadata. However, achieving this consistently across various government departments and levels (federal, cantonal, and communal) remains a challenge.*
 
-### Challenges concerning platforms 
+### Challenges concerning platforms
 
 *Platform Traps Swiss OGD providers face several “platform traps” that impede progress: 1. Chicken-or-egg problem: Attracting both data providers and users simultaneously to create a thriving ecosystem. 2. Penguin problem: Hesitation among data providers to be the first to share their data. 3. Emergence concept: Difficulty in fostering self-organizing growth and evolution of the platform.*
 
@@ -28,7 +28,7 @@ Data with similar structure is being collected from different points
 
 *There is a lack of robust data governance practices in Swiss public organizations, which hinders the effective management and sharing of data. This gap in governance may prevent OGD providers from adequately addressing platform challenges and fully realizing the potential of open data.*
 
-## Algorithmic Application to help harmonize Open Government Data 
+## Algorithmic Application to help harmonize Open Government Data
 
 **Aim of the application**
 
@@ -36,7 +36,7 @@ Data with similar structure is being collected from different points
 
 -   
 
-## Procedure 
+## Procedure
 
 -   **Create a Test Dataset Repository** (using the opendata.swiss API)
 

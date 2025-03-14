@@ -1,0 +1,47 @@
+harmonizeR/                 # Package root directory
+├── DESCRIPTION             # Package metadata
+├── NAMESPACE               # Exported functions
+├── R/                      # R code files
+│   ├── utils.R             # Utility functions (logging, field standardization)
+│   ├── loading.R           # Data loading functions
+│   ├── conversion.R        # Type conversion functions
+│   ├── harmonization.R     # Core harmonization logic
+│   ├── geospatial.R        # Geospatial functions
+│   ├── linking.R           # Dataset linking functions
+│   └── main.R              # Main workflow function
+├── man/                    # Documentation (generated)
+├── tests/                  # Unit tests
+│   └── testthat/
+├── vignettes/              # Usage examples
+└── data/                   # Example datasets
+
+
+Package: harmonizeR
+Title: Data Harmonization Tools for Swiss Open Data
+Version: 0.1.0
+Authors@R: 
+  person("Nicole", "Pauli", email = "nicole.pauli@stud.unilu.ch", role = c("aut", "cre"))
+Description: Tools for harmonizing, standardizing, and linking datasets from various 
+sources, with special support for Swiss open data formats and geospatial services.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports:
+  readr,
+readxl,
+jsonlite,
+dplyr,
+purrr,
+stringr,
+lubridate,
+tidyr,
+tools,
+sf,
+httr,
+xml2
+Suggests:
+  testthat,
+knitr,
+rmarkdown
